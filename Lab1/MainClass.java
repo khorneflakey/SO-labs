@@ -18,6 +18,8 @@ public class MainClass extends JFrame {
     private JTextField hourFields = new JTextField(2);
     private JTextField minuteFields = new JTextField(2);
     private JTextField secondFields = new JTextField(2);
+    private JTextField delayField = new JTextField(10);
+    private JTextField periodField = new JTextField(10);
     private Activator activator = new Activator();
 
     MainClass() {
@@ -44,7 +46,9 @@ public class MainClass extends JFrame {
         JButton periodicTimerButton = new JButton("Periodic Timer");
 
         JPanel buttonPanel = new JPanel();
+        buttonPanel.add(delayField);
         buttonPanel.add(delayedButton);
+        buttonPanel.add(periodField);
         buttonPanel.add(periodicTimerButton);
         
         mainPanel.add(inputPanel);
@@ -86,7 +90,8 @@ public class MainClass extends JFrame {
         delayedButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    activator.activateDelayedTimer(10000);
+                    int delay = parseIntFromField(delayField);
+                    activator.activateDelayedTimer(delay);
                 } catch (IllegalStateException ex) {
                     System.out.println("Timer is already working or closed");
                 }
@@ -96,7 +101,8 @@ public class MainClass extends JFrame {
         periodicTimerButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    activator.activateClockTimer(0, 2000);
+                    int period = parseIntFromField(periodField);
+                    activator.activateClockTimer(0, period);
                 } catch (IllegalStateException ex) {
                     System.out.println("Timer is already working or closed");
                 }
