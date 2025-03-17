@@ -9,7 +9,7 @@ class PeriodicTimerTask extends TimerTask {
     }
 }
 
-//puuhuh
+
 class DelayedTask extends TimerTask {
     private  Timer target;
 
